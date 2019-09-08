@@ -17,15 +17,17 @@ const Home = () => (
     </Head>
   <Nav />
 
-  <div className="container">
-    <div className="row">
-      <div className="col-lg-3">
-        <SideMenu />
-      </div>
-      <div className="col-lg-9">
-        <Carousel />
-        <div className="row">
-          <MovieList />
+  <div className="home-page">
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-3">
+          <SideMenu />
+        </div>
+        <div className="col-lg-9">
+          <Carousel />
+          <div className="row">
+            <MovieList />
+          </div>
         </div>
       </div>
     </div>
@@ -35,7 +37,11 @@ const Home = () => (
       <p className="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
     </div>
   </footer>
-
+  <style jsx>{`
+    .home-page {
+      margin-top: 80px;
+    }
+  `}</style>
   </div>
 )
 
