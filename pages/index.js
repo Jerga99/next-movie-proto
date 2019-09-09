@@ -10,7 +10,9 @@ import { getMovies } from '../actions'
 
 const Home = () => {
 
-  const movies = getMovies()
+  const movies = getMovies().then(movies => {
+    alert(movies)
+  })
 
   return (
     <div>

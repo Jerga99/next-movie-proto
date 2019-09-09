@@ -33,7 +33,9 @@ const movieData = [
 
 
 export const getMovies = () => {
-  return movieData
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(movieData), 500)
+  })
 }
 
 
