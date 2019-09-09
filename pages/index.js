@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import Nav from '../components/nav'
@@ -10,8 +10,9 @@ import { getMovies } from '../actions'
 
 const Home = () => {
 
-  const movies = getMovies().then(movies => {
-    alert(movies)
+  const [movies, setMovies] = useState([])
+  getMovies().then(movies => {
+    setMovies(movies)
   })
 
   return (
