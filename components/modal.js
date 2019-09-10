@@ -6,12 +6,8 @@ const Modal = (props) => {
   let closeButton = null
   let data = {}
 
-  const toggleModal = () => {
+  const closeModal = () => {
     closeButton.click()
-  }
-
-  const handleData = (formData) => {
-    data = {...formData}
   }
 
   const submitModal = () => {
@@ -40,11 +36,10 @@ const Modal = (props) => {
               </button>
             </div>
             <div class="modal-body">
-              {React.cloneElement(onlyChild, { handleData: handleData })}
+              {React.cloneElement(onlyChild, { closeModal })}
             </div>
             <div class="modal-footer">
               <button ref={(ele) => { closeButton = ele }} type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button onClick={submitModal} type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
@@ -52,5 +47,7 @@ const Modal = (props) => {
     </div>
   )
 }
+
+// <button onClick={submitModal} type="button" class="btn btn-primary">Save changes</button>
 
 export default Modal

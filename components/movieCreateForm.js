@@ -11,7 +11,6 @@ const MovieCreateForm = (props) => {
       ...form,
       [name]: target.value
     })
-    props.handleData(form)
   }
 
   const handleGenreChange = (event) => {
@@ -23,7 +22,16 @@ const MovieCreateForm = (props) => {
       }
     }
     setForm({...form, genre: value.toString()});
-    props.handleData(form)
+  }
+
+  const handleCreateMovie = () => {
+    createMovie(form)
+      .then((movie) => {
+
+      alert(JSON.stringify(movie))
+      setForm({});
+      props.closeModal()
+    })
   }
 
   return (
@@ -95,7 +103,7 @@ const MovieCreateForm = (props) => {
           <option>action</option>
         </select>
       </div>
-      <button onClick={() => alert(JSON.stringify(form))}>Submit</button>
+      <button onClick={handleCreateMovie} type="button" class="btn btn-primary">Save changes</button>
     </form>
   )
 }
