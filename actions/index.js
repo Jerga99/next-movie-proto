@@ -48,6 +48,14 @@ export const getMovies = () => {
   })
 }
 
+export const getMovieById = (id) => {
+  return new Promise((resolve, reject) => {
+    const movieIndex = movieData.findIndex(m => m.id === id)
+    const movie = movieData[movieIndex]
+    setTimeout(() => resolve(movie), 100)
+  })
+}
+
 export const getCategories = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(categories), 100)
