@@ -12,7 +12,7 @@ const Home = (props) => {
 
   useEffect(() => {
     const { movies } = props
-    const images = movies.map(m => m.image)
+    const images = movies.map(m => m.cover)
     setImages(images)
   }, []);
 

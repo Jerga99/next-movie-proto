@@ -32,6 +32,12 @@ const Carousel = (props) => {
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="sr-only">Next</span>
       </a>
+      <style jsx>{`
+          .carousel-item {
+            max-height: 400px;
+          }
+        `}
+        </style>
     </div>
   )
 }
