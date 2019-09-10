@@ -13,7 +13,6 @@ const Home = (props) => {
   useEffect(() => {
     const { movies } = props
     const images = movies.map(m => m.image)
-    // alert('ola')
     setImages(images)
   }, []);
 
