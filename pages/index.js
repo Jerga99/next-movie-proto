@@ -57,9 +57,6 @@
 
 
 
-
-
-
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -68,14 +65,15 @@ import SideMenu from '../components/sideMenu'
 import Carousel from '../components/Carousel'
 import MovieList from '../components/MovieList'
 import Footer from '../components/footer'
-import { getMovies } from '../actions'
+import { getMovies, getCategories } from '../actions'
 
 class Home extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      movies: []
+      movies: [],
+      categories: []
     }
   }
 
@@ -83,9 +81,15 @@ class Home extends React.Component {
     getMovies().then(movies => {
       this.setState({movies})
     })
+
+    getCategories().then(categories => {
+      this.setState({categories})
+    })
   }
 
   render() {
+    const {categories, movies} = this.state
+
     return (
       <div>
         <Head>
@@ -100,12 +104,12 @@ class Home extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-lg-3">
-              <SideMenu />
+              <SideMenu categories={categories} />
             </div>
             <div className="col-lg-9">
               <Carousel />
               <div className="row">
-                <MovieList movies={this.state.movies} />
+                <MovieList movies={movies} />
               </div>
             </div>
           </div>

@@ -30,11 +30,24 @@ const movieData = [
   }
 ]
 
+const categories = [
+ {id: '1', name: 'drama'},
+ {id: '2', name: 'action'},
+ {id: '3', name: 'adventure'},
+ {id: '4', name: 'historical'},
+]
+
 
 
 export const getMovies = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(movieData), 500)
+  })
+}
+
+export const getCategories = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(categories), 100)
   })
 }
 
