@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import SideMenu from '../components/sideMenu'
 import Carousel from '../components/Carousel'
@@ -8,6 +8,18 @@ import { getMovies, getCategories } from '../actions'
 
 const Home = (props) => {
   const { movies = [], categories = [] } = props
+  const [ images, setImages ] = useState([])
+
+  useEffect(() => {
+    const { movies } = props
+    const images = movies.map(m => m.image)
+    // alert('ola')
+    setImages(images)
+  }, []);
+
+  // If passing a second argument (array), React will run the callback after the first render and every time one of the elements in the array is changed. for example when placing useEffect(() => console.log('hello'), [someVar, someOtherVar]) - the callback will run after the first render and after any render that one of someVar or someOtherVar are changed.
+  // By passing the second argument an empty array, React will compare after each render the array and will see nothing was changed, thus calling the callback only after the first render.
+
   return (
     <div>
       <div className="home-page">
@@ -17,7 +29,7 @@ const Home = (props) => {
               <SideMenu categories={categories} />
             </div>
             <div className="col-lg-9">
-              <Carousel />
+              <Carousel items={images} />
               <div className="row">
                 <MovieList movies={movies} />
               </div>
