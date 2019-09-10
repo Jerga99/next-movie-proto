@@ -16,6 +16,10 @@ const Home = (props) => {
     setImages(images)
   }, []);
 
+  const addMovieToList = (movie) => {
+    alert(JSON.stringify(movie))
+  }
+
   // If passing a second argument (array), React will run the callback after the first render and every time one of the elements in the array is changed. for example when placing useEffect(() => console.log('hello'), [someVar, someOtherVar]) - the callback will run after the first render and after any render that one of someVar or someOtherVar are changed.
   // By passing the second argument an empty array, React will compare after each render the array and will see nothing was changed, thus calling the callback only after the first render.
 
@@ -25,7 +29,9 @@ const Home = (props) => {
         <div className="container">
           <div className="row">
             <div className="col-lg-3">
-              <SideMenu categories={categories} />
+              <SideMenu
+                addMovieToList={addMovieToList}
+                categories={categories} />
             </div>
             <div className="col-lg-9">
               <Carousel items={images} />

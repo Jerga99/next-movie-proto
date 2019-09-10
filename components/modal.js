@@ -10,11 +10,6 @@ const Modal = (props) => {
     closeButton.click()
   }
 
-  const submitModal = () => {
-    alert(JSON.stringify(data))
-    toggleModal()
-  }
-
   // Verifies that children has only one child (a React element) and returns it. Otherwise this method throws an error.
   const onlyChild = React.Children.only(props.children)
 

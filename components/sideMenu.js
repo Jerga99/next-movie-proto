@@ -5,7 +5,7 @@ const SideMenu = (props) => {
   return (
    <div>
      <Modal>
-       <ModalCreateForm />
+       <ModalCreateForm {...props} />
      </Modal>
      <h1 className="my-4">Categories</h1>
       <div className="list-group">
