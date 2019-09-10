@@ -1,13 +1,26 @@
 
-
+import React from 'react'
 
 const Modal = (props) => {
 
   let closeButton = null
+  let data = {}
 
   const toggleModal = () => {
     closeButton.click()
   }
+
+  const handleData = (formData) => {
+    data = {...formData}
+  }
+
+  const submitModal = () => {
+    alert(JSON.stringify(data))
+    toggleModal()
+  }
+
+  // Verifies that children has only one child (a React element) and returns it. Otherwise this method throws an error.
+  const onlyChild = React.Children.only(props.children)
 
   return (
     <div>
@@ -27,11 +40,11 @@ const Modal = (props) => {
               </button>
             </div>
             <div class="modal-body">
-              {props.children}
+              {React.cloneElement(onlyChild, { handleData: handleData })}
             </div>
             <div class="modal-footer">
               <button ref={(ele) => { closeButton = ele }} type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button onClick={toggleModal} type="button" class="btn btn-primary">Save changes</button>
+              <button onClick={submitModal} type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>

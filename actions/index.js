@@ -51,6 +51,14 @@ export const getMovies = () => {
   })
 }
 
+export const createMovie = (movie) => {
+  movie.id = Math.random().toString(36).substr(2, 7)
+  return new Promise((resolve, reject) => {
+    movieData.push(movie)
+    setTimeout(() => resolve(movie), 100)
+  })
+}
+
 export const getMovieById = (id) => {
   return new Promise((resolve, reject) => {
     const movieIndex = movieData.findIndex(m => m.id === id)

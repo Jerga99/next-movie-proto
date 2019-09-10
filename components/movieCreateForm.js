@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
+import { createMovie } from '../actions'
 
-
-const MovieCreateForm = () => {
+const MovieCreateForm = (props) => {
   const [form, setForm] = useState({})
 
   const handleChange = (event) => {
@@ -11,6 +11,7 @@ const MovieCreateForm = () => {
       ...form,
       [name]: target.value
     })
+    props.handleData(form)
   }
 
   const handleGenreChange = (event) => {
@@ -22,6 +23,7 @@ const MovieCreateForm = () => {
       }
     }
     setForm({...form, genre: value.toString()});
+    props.handleData(form)
   }
 
   return (
