@@ -41,7 +41,7 @@ const categories = [
 
 export const getMovies = () => {
   return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(movieData), 500)
+    setTimeout(() => resolve(movieData), 100)
   })
 }
 
