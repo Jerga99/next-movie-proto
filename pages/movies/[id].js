@@ -9,20 +9,20 @@ const Movie = (props) => {
     <div class="container">
       <div class="jumbotron">
         <h1 class="display-4">{movie.name}</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <p class="lead">{movie.description}</p>
         <hr class="my-4" />
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <p>{movie.genre}</p>
         <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
       </div>
       <p>
-      Some info about the movie
+      {movie.longDesc}
       </p>
     </div>
   )
 }
 
-Movie.getInitialProps = async ({ req }) => {
-  const movie = await getMovieById('2')
+Movie.getInitialProps = async ({ query }) => {
+  const movie = await getMovieById(query.id)
 
   return { movie }
 }
