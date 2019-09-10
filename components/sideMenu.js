@@ -1,4 +1,4 @@
-
+import Modal from './modal'
 
 
 const SideMenu = (props) => {
@@ -14,6 +14,7 @@ const SideMenu = (props) => {
           ))
         }
       </div>
+      <Modal />
    </div>
   )
 }
