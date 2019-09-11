@@ -10,12 +10,18 @@ import { getMovies, getCategories } from '../actions'
 const Home = (props) => {
   const { movies = [], categories = [] } = props
   const [ images, setImages ] = useState([])
+  const [ filter, setFilter ] = useState('')
 
   useEffect(() => {
     const { movies } = props
     const images = movies.slice(0,3).map(m => ({cover: m.cover, id: m.id}))
     setImages(images)
   }, []);
+
+  const changeCategory = (category) => {
+    alert(category)
+    setFilter(category)
+  }
 
   const addMovieToList = (movie) => {
     Router.push('/')
@@ -31,13 +37,17 @@ const Home = (props) => {
           <div className="row">
             <div className="col-lg-3">
               <SideMenu
+                activeCategory={filter}
+                changeCategory={changeCategory}
                 addMovieToList={addMovieToList}
                 categories={categories} />
             </div>
             <div className="col-lg-9">
               <Carousel items={images} />
+              <h1>Displaying "{filter}" movies</h1>
               <div className="row">
-                <MovieList movies={movies} />
+                <MovieList
+                  movies={movies} />
               </div>
             </div>
           </div>
