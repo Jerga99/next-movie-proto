@@ -13,9 +13,9 @@ const data = require('./data.json')
 app.prepare().then(() => {
   const server = express();
 
-  server.get('/api/v1/movies', (req, res) => {
-    return res.json(data)
-  })
+  // server.get('/api/v1/movies', (req, res) => {
+  //   return res.json(data)
+  // })
 
   server.get('*', (req, res) => {
     return handle(req, res)

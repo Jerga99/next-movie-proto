@@ -11,7 +11,6 @@ const categories = [
 ]
 
 
-
 export const getMovies = () => {
   return axios.get(`${BASE_URL}/api/v1/movies`)
     .then(res => res.data)
