@@ -10,7 +10,7 @@ import { getMovies, getCategories } from '../actions'
 const Home = (props) => {
   const { movies = [], categories = [] } = props
   const [ images, setImages ] = useState([])
-  const [ filter, setFilter ] = useState('')
+  const [ filter, setFilter ] = useState('all')
 
   useEffect(() => {
     const { movies } = props
@@ -19,8 +19,17 @@ const Home = (props) => {
   }, []);
 
   const changeCategory = (category) => {
-    alert(category)
     setFilter(category)
+  }
+
+  const filterMovies = (movies) => {
+    if (filter === 'all') {
+      return movies
+    }
+
+    return movies.filter(m => {
+      return m.genre && m.genre.includes(filter)
+    })
   }
 
   const addMovieToList = (movie) => {
@@ -47,7 +56,7 @@ const Home = (props) => {
               <h1>Displaying "{filter}" movies</h1>
               <div className="row">
                 <MovieList
-                  movies={movies} />
+                  movies={filterMovies(movies)} />
               </div>
             </div>
           </div>
