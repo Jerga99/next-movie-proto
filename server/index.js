@@ -9,7 +9,11 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const data = require('./data.json')
+const fs = require('fs')
+const path = require('path')
+const filePath = './data.json'
+const data = require(filePath)
+
 
 app.prepare().then(() => {
   const server = express();
@@ -21,9 +25,19 @@ app.prepare().then(() => {
   server.use(bodyParser.json())
 
   server.post('/api/v1/movies', (req, res) => {
-    const { body } = req
-    console.log(body)
-    return res.json({data: 'succesful'})
+    const movie = req.body
+    data.push(movie)
+
+    const pathToFile = path.join(__dirname, filePath)
+    const stringifiedData = JSON.stringify(data, null, 2)
+
+    fs.writeFile(pathToFile, stringifiedData, function(err) {
+      if (err) {
+        return res.status(422).send(err)
+      }
+
+      return res.json('File Sucesfully updated')
+    })
   })
 
   server.get('*', (req, res) => {
