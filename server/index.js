@@ -3,6 +3,7 @@ const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
 const express = require('express');
+const bodyParser = require('body-parser')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -16,6 +17,14 @@ app.prepare().then(() => {
   // server.get('/api/v1/movies', (req, res) => {
   //   return res.json(data)
   // })
+
+  server.use(bodyParser.json())
+
+  server.post('/api/v1/movies', (req, res) => {
+    const { body } = req
+    console.log(body)
+    return res.json({data: 'succesful'})
+  })
 
   server.get('*', (req, res) => {
     return handle(req, res)
