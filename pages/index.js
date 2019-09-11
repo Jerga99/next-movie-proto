@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Router from 'next/router';
 import Link from 'next/link'
 import SideMenu from '../components/sideMenu'
 import Carousel from '../components/Carousel'
@@ -12,12 +13,12 @@ const Home = (props) => {
 
   useEffect(() => {
     const { movies } = props
-    const images = movies.map(m => m.cover)
+    const images = movies.slice(0,3).map(m => ({cover: m.cover, id: m.id}))
     setImages(images)
   }, []);
 
   const addMovieToList = (movie) => {
-    alert(JSON.stringify(movie))
+    Router.push('/')
   }
 
   // If passing a second argument (array), React will run the callback after the first render and every time one of the elements in the array is changed. for example when placing useEffect(() => console.log('hello'), [someVar, someOtherVar]) - the callback will run after the first render and after any render that one of someVar or someOtherVar are changed.

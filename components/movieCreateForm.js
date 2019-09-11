@@ -123,7 +123,16 @@ class MovieCreateForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      form: {}
+      form: {
+        name: '',
+        releaseYear: '',
+        description: '',
+        longDesc: '',
+        rating: '',
+        genre: '',
+        cover: '',
+        image: ''
+      }
     }
   }
 
@@ -160,7 +169,16 @@ class MovieCreateForm extends React.Component {
       .then((movie) => {
       this.props.addMovieToList(movie)
       this.props.closeModal()
-      this.setState({form: {}})
+      this.setState({form: {
+        name: '',
+        releaseYear: '',
+        description: '',
+        longDesc: '',
+        rating: '',
+        genre: '',
+        cover: '',
+        image: ''
+      }})
     })
   }
 
@@ -168,66 +186,66 @@ class MovieCreateForm extends React.Component {
     const { form } = this.state
     return (
       <form>
-        <div class="form-group">
-          <label for="name">Name</label>
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
           <input
             value={form.name}
             onChange={this.handleChange}
             name="name"
             type="text"
-            class="form-control" id="name" aria-describedby="emailHelp" placeholder="Lord of the Rings" />
+            className="form-control" id="name" aria-describedby="emailHelp" placeholder="Lord of the Rings" />
         </div>
-        <div class="form-group">
-          <label for="description">Description</label>
+        <div className="form-group">
+          <label htmlFor="description">Description</label>
           <input
             value={form.description}
             onChange={this.handleChange}
             name="description"
             type="text"
-            class="form-control" id="description" placeholder="Somewhere in Middle-earth..." />
+            className="form-control" id="description" placeholder="Somewhere in Middle-earth..." />
         </div>
-        <div class="form-group">
-          <label for="description">Rating</label>
+        <div className="form-group">
+          <label htmlFor="description">Rating</label>
           <input
             value={form.rating}
             onChange={this.handleChange}
             type="number"
             name="rating"
-            max="5" min="0" class="form-control" id="rating" placeholder="3" />
-          <small id="emailHelp" class="form-text text-muted">Max: 5, Min: 0 </small>
+            max="5" min="0" className="form-control" id="rating" placeholder="3" />
+          <small id="emailHelp" className="form-text text-muted">Max: 5, Min: 0 </small>
         </div>
-        <div class="form-group">
-          <label for="image">Image</label>
+        <div className="form-group">
+          <label htmlFor="image">Image</label>
           <input
             value={form.image}
             onChange={this.handleChange}
             name="image"
             type="text"
-            class="form-control" id="image" placeholder="http://....." />
+            className="form-control" id="image" placeholder="http://....." />
         </div>
-        <div class="form-group">
-          <label for="cover">Cover</label>
+        <div className="form-group">
+          <label htmlFor="cover">Cover</label>
           <input
             value={form.cover}
             onChange={this.handleChange}
             name="cover"
             type="text"
-            class="form-control" id="cover" placeholder="http://......" />
+            className="form-control" id="cover" placeholder="http://......" />
         </div>
-        <div class="form-group">
-          <label for="longDesc">Long Description</label>
+        <div className="form-group">
+          <label htmlFor="longDesc">Long Description</label>
           <textarea
             value={form.longDesc}
             onChange={this.handleChange}
             name="longDesc"
-            class="form-control"
+            className="form-control"
             id="longDesc" rows="3"></textarea>
         </div>
-        <div class="form-group">
-          <label for="genre">Genre</label>
+        <div className="form-group">
+          <label htmlFor="genre">Genre</label>
           <select
             onChange={this.handleGenreChange}
-            multiple class="form-control" id="genre">
+            multiple className="form-control" id="genre">
             <option>drama</option>
             <option>music</option>
             <option>adventure</option>
@@ -235,7 +253,7 @@ class MovieCreateForm extends React.Component {
             <option>action</option>
           </select>
         </div>
-        <button onClick={this.handleCreateMovie} type="button" class="btn btn-primary">Save changes</button>
+        <button onClick={this.handleCreateMovie} type="button" className="btn btn-primary">Save changes</button>
       </form>
     )
   }

@@ -1,5 +1,5 @@
-import data from './data'
+// export { default } from '../../../server/data.json'
 
-export default (req, res) => {
-  return res.json(data)
-}
+// export default (req, res) => {
+//   return res.json(data)
+// }

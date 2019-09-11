@@ -18,9 +18,9 @@ const data = require(filePath)
 app.prepare().then(() => {
   const server = express();
 
-  // server.get('/api/v1/movies', (req, res) => {
-  //   return res.json(data)
-  // })
+  server.get('/api/v1/movies', (req, res) => {
+    return res.json(data)
+  })
 
   server.use(bodyParser.json())
 

@@ -18,10 +18,9 @@ export const getMovies = () => {
 
 export const createMovie = (movie) => {
   movie.id = Math.random().toString(36).substr(2, 7)
-  return new Promise((resolve, reject) => {
-    movieData.push(movie)
-    setTimeout(() => resolve(movie), 100)
-  })
+
+  return axios.post(`${BASE_URL}/api/v1/movies`, movie)
+    .then(res => res.data)
 }
 
 export const getMovieById = (id) => {
