@@ -1,4 +1,5 @@
-
+import axios from 'axios'
+const BASE_URL = 'http://localhost:3000'
 
 const movieData = []
 
@@ -12,9 +13,8 @@ const categories = [
 
 
 export const getMovies = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(movieData), 100)
-  })
+  return axios.get(`${BASE_URL}/api/v1/movies`)
+    .then(res => res.data)
 }
 
 export const createMovie = (movie) => {
