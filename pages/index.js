@@ -7,6 +7,8 @@ import MovieList from '../components/MovieList'
 import Footer from '../components/footer'
 import { getMovies, getCategories } from '../actions'
 
+const MAX_IMAGES = 3
+
 const Home = (props) => {
   const { movies = [], categories = [] } = props
   const [ images, setImages ] = useState([])
@@ -14,7 +16,7 @@ const Home = (props) => {
 
   useEffect(() => {
     const { movies } = props
-    const images = movies.slice(0,3).map(m => ({cover: m.cover, id: m.id}))
+    const images = movies.slice(0, 3).map(m => ({cover: m.cover, id: m.id}))
     setImages(images)
   }, []);
 
