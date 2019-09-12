@@ -122,16 +122,22 @@ class MovieCreateForm extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      form: {
-        name: '',
-        releaseYear: '',
-        description: '',
-        longDesc: '',
-        rating: '',
-        genre: '',
-        cover: '',
-        image: ''
+    this.state = {}
+
+    if (props.initialData) {
+      this.state.form = {...props.initialData}
+    } else {
+      this.state = {
+        form: {
+          name: '',
+          releaseYear: '',
+          description: '',
+          longDesc: '',
+          rating: '',
+          genre: '',
+          cover: '',
+          image: ''
+        }
       }
     }
   }
