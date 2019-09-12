@@ -27,7 +27,8 @@ class Edit extends React.Component {
     return (
       <div className="container">
         <h1>Edit the Movie</h1>
-        { isFetched && <MovieCreateForm initialData={movie} />}
+        { /* isFetched && <MovieCreateForm initialData={movie} /> */ }
+        <MovieCreateForm initialData={movie} />
       </div>
     )
   }

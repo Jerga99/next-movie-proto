@@ -110,10 +110,6 @@
 // export default MovieCreateForm
 
 
-
-
-
-
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { createMovie } from '../actions'
@@ -124,21 +120,33 @@ class MovieCreateForm extends React.Component {
     super(props)
     this.state = {}
 
-    if (props.initialData) {
-      this.state.form = {...props.initialData}
-    } else {
-      this.state = {
-        form: {
-          name: '',
-          releaseYear: '',
-          description: '',
-          longDesc: '',
-          rating: '',
-          genre: '',
-          cover: '',
-          image: ''
-        }
+    this.state = {
+      hasInitialDataLoaded: false,
+      form: {
+        name: '',
+        releaseYear: '',
+        description: '',
+        longDesc: '',
+        rating: '',
+        genre: '',
+        cover: '',
+        image: ''
       }
+    }
+  }
+
+  componentDidUpdate() {
+    // if (this.props.initialData) {
+    //   this.setState({
+    //     form: this.props.initialData
+    //   })
+    // }
+
+    if (this.props.initialData && !this.state.hasInitialDataLoaded) {
+      this.setState({
+        form: this.props.initialData,
+        hasInitialDataLoaded: true
+      })
     }
   }
 
