@@ -17,10 +17,17 @@ const Movie = (props) => {
         <p class="lead">{movie.description}</p>
         <hr class="my-4" />
         <p>{movie.genre}</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-        <button onClick={() => handleDelete(id)}
+        <a class="btn btn-primary btn-lg mr-1" href="#" role="button">Learn more</a>
+        <button
+           onClick={() => router.push(`/movies/${id}/edit`)}
+           class="btn btn-warning btn-lg mr-1"
+           type="button">Update
+        </button>
+        <button
+           onClick={() => handleDelete(id)}
            class="btn btn-danger btn-lg"
-           type="button">Delete</button>
+           type="button">Delete
+        </button>
       </div>
       <p>
       {movie.longDesc}
