@@ -17,16 +17,38 @@ const data = require(filePath)
 
 app.prepare().then(() => {
   const server = express();
+  server.use(bodyParser.json())
 
   server.get('/api/v1/movies', (req, res) => {
     return res.json(data)
   })
 
-  server.use(bodyParser.json())
+  server.get('/api/v1/movies/:id', (req, res) => {
+    const { id } = req.params
+    const movie = data.find(m => m.id === id)
+    res.status(200).json(movie)
+  })
 
   server.post('/api/v1/movies', (req, res) => {
     const movie = req.body
     data.push(movie)
+
+    const pathToFile = path.join(__dirname, filePath)
+    const stringifiedData = JSON.stringify(data, null, 2)
+
+    fs.writeFile(pathToFile, stringifiedData, function(err) {
+      if (err) {
+        return res.status(422).send(err)
+      }
+
+      return res.json('File Sucesfully updated')
+    })
+  })
+
+  server.delete('/api/v1/movies/:id', (req, res) => {
+    const { id } = req.params
+    const index = data.findIndex(m => m.id === id)
+    data.splice(index, 1)
 
     const pathToFile = path.join(__dirname, filePath)
     const stringifiedData = JSON.stringify(data, null, 2)
