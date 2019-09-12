@@ -66,7 +66,19 @@ app.prepare().then(() => {
     const { id } = req.params
     const movie = req.body
 
-    return res.json(movie)
+    const index = data.findIndex(m => m.id === id)
+    data[index] = movie
+
+    const pathToFile = path.join(__dirname, filePath)
+    const stringifiedData = JSON.stringify(data, null, 2)
+
+    fs.writeFile(pathToFile, stringifiedData, function(err) {
+      if (err) {
+        return res.status(422).send(err)
+      }
+
+      return res.json('File Sucesfully updated')
+    })
   })
 
   server.get('*', (req, res) => {

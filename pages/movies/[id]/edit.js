@@ -1,6 +1,7 @@
 
 
 import React from 'react'
+import Router from 'next/router';
 import { getMovieById, updateMovie } from '../../../actions'
 import MovieCreateForm from '../../../components/movieCreateForm'
 
@@ -17,9 +18,7 @@ class Edit extends React.Component {
   handleMovieUpdate = (movie, cleanCallback) => {
     updateMovie(movie)
       .then(() => {
-        // Handle Success
-        alert('Movie Updated!')
-
+        Router.push('/')
     })
   }
 
