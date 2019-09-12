@@ -24,7 +24,7 @@ class SideMenu extends React.Component {
     return (
        <div>
          <Modal ref={ele => {this.modal = ele}}>
-           <ModalCreateForm {...this.props} handleCreateMovie={this.handleCreateMovie} />
+           <ModalCreateForm {...this.props} handleFormSubmit={this.handleCreateMovie} />
          </Modal>
          <h1 className="my-4">Categories</h1>
           <div className="list-group">

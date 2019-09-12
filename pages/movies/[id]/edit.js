@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import { getMovieById } from '../../../actions'
+import { getMovieById, updateMovie } from '../../../actions'
 import MovieCreateForm from '../../../components/movieCreateForm'
 
 class Edit extends React.Component {
@@ -12,6 +12,15 @@ class Edit extends React.Component {
 
   state = {
     movie: {}
+  }
+
+  handleMovieUpdate = (movie, cleanCallback) => {
+    updateMovie(movie)
+      .then(() => {
+        // Handle Success
+        alert('Movie Updated!')
+
+    })
   }
 
   componentDidMount() {
@@ -26,7 +35,9 @@ class Edit extends React.Component {
     return (
       <div className="container">
         <h1>Edit the Movie</h1>
-        <MovieCreateForm initialData={movie} />
+        <MovieCreateForm
+          initialData={movie}
+          handleFormSubmit={this.handleMovieUpdate} />
       </div>
     )
   }

@@ -172,7 +172,7 @@ class MovieCreateForm extends React.Component {
   }
 
   submitForm = () => {
-    this.props.handleCreateMovie(this.state.form, () => {
+    this.props.handleFormSubmit(this.state.form, () => {
       this.setState({form: {
         name: '',
         releaseYear: '',

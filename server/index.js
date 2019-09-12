@@ -62,6 +62,13 @@ app.prepare().then(() => {
     })
   })
 
+  server.patch('/api/v1/movies/:id', (req, res) => {
+    const { id } = req.params
+    const movie = req.body
+
+    return res.json(movie)
+  })
+
   server.get('*', (req, res) => {
     return handle(req, res)
   })
