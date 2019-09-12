@@ -12,8 +12,20 @@ const handle = app.getRequestHandler()
 const fs = require('fs')
 const path = require('path')
 const filePath = './data.json'
+const fullPathToFile = path.join(__dirname, filePath)
 const data = require(filePath)
 
+function saveFile(pathToFile, file, callback) {
+  fs.writeFile(pathToFile, file, function(err) {
+    if (err) {
+      callback(null, err)
+    }
+
+    callback('File was Updated!', null)
+  })
+}
+
+const strinigify = (data) => JSON.stringify(data, null, 2)
 
 app.prepare().then(() => {
   const server = express();
@@ -33,15 +45,10 @@ app.prepare().then(() => {
     const movie = req.body
     data.push(movie)
 
-    const pathToFile = path.join(__dirname, filePath)
-    const stringifiedData = JSON.stringify(data, null, 2)
+    saveFile(fullPathToFile, strinigify(data), (msg, err) => {
+      if (err) return res.status(422).send(err)
 
-    fs.writeFile(pathToFile, stringifiedData, function(err) {
-      if (err) {
-        return res.status(422).send(err)
-      }
-
-      return res.json('File Sucesfully updated')
+      return res.json(msg)
     })
   })
 
@@ -50,15 +57,10 @@ app.prepare().then(() => {
     const index = data.findIndex(m => m.id === id)
     data.splice(index, 1)
 
-    const pathToFile = path.join(__dirname, filePath)
-    const stringifiedData = JSON.stringify(data, null, 2)
+    saveFile(fullPathToFile, strinigify(data), (msg, err) => {
+      if (err) return res.status(422).send(err)
 
-    fs.writeFile(pathToFile, stringifiedData, function(err) {
-      if (err) {
-        return res.status(422).send(err)
-      }
-
-      return res.json('File Sucesfully updated')
+      return res.json(msg)
     })
   })
 
@@ -69,15 +71,10 @@ app.prepare().then(() => {
     const index = data.findIndex(m => m.id === id)
     data[index] = movie
 
-    const pathToFile = path.join(__dirname, filePath)
-    const stringifiedData = JSON.stringify(data, null, 2)
+    saveFile(fullPathToFile, strinigify(data), (msg, err) => {
+      if (err) return res.status(422).send(err)
 
-    fs.writeFile(pathToFile, stringifiedData, function(err) {
-      if (err) {
-        return res.status(422).send(err)
-      }
-
-      return res.json('File Sucesfully updated')
+      return res.json(msg)
     })
   })
 
