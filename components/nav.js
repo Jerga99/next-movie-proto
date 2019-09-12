@@ -40,20 +40,6 @@ class Nav extends React.Component {
             </ul>
           </div>
         </div>
-        <style jsx>{`
-          .navbar {
-            min-height: 80px;
-          }
-          .navbar-nav > li > a {
-            font-size: 19px;
-          }
-
-          .navbar-brand {
-            font-size: 30px;
-            font-weight: bold;
-          }
-        `}
-        </style>
       </nav>
     )
   }

@@ -69,6 +69,10 @@ const Home = (props) => {
   )
 }
 
+
+// <style jsx global>
+// </style>
+
 Home.getInitialProps = async ({ req }) => {
   const categories = await getCategories()
   const movies = await getMovies()
