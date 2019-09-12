@@ -55,7 +55,7 @@ const Home = (props) => {
             </div>
             <div className="col-lg-9">
               <Carousel items={images} />
-              <h1>Displaying "{filter}" movies</h1>
+              <h1 class="mb-4">Displaying "{filter}" movies</h1>
               <div className="row">
                 <MovieList
                   movies={filterMovies(movies)} />
