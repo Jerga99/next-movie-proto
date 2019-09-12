@@ -31,7 +31,7 @@ const Modal = (props) => {
               </button>
             </div>
             <div className="modal-body">
-              {React.cloneElement(onlyChild, { closeModal })}
+              {React.cloneElement(onlyChild, { cleanup: closeModal })}
             </div>
             <div className="modal-footer">
               <button ref={(ele) => { closeButton = ele }} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

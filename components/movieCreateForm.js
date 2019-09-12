@@ -168,7 +168,7 @@ class MovieCreateForm extends React.Component {
     createMovie(this.state.form)
       .then((movie) => {
       this.props.addMovieToList(movie)
-      this.props.closeModal()
+      this.props.cleanup && this.props.cleanup()
       this.setState({form: {
         name: '',
         releaseYear: '',
