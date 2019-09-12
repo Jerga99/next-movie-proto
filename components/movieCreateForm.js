@@ -112,7 +112,6 @@
 
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { createMovie } from '../actions'
 
 class MovieCreateForm extends React.Component {
 
@@ -136,12 +135,6 @@ class MovieCreateForm extends React.Component {
   }
 
   componentDidUpdate() {
-    // if (this.props.initialData) {
-    //   this.setState({
-    //     form: this.props.initialData
-    //   })
-    // }
-
     if (this.props.initialData && !this.state.hasInitialDataLoaded) {
       this.setState({
         form: this.props.initialData,
@@ -178,11 +171,8 @@ class MovieCreateForm extends React.Component {
     })
   }
 
-  handleCreateMovie = () => {
-    createMovie(this.state.form)
-      .then((movie) => {
-      this.props.addMovieToList(movie)
-      this.props.cleanup && this.props.cleanup()
+  submitForm = () => {
+    this.props.handleCreateMovie(this.state.form, () => {
       this.setState({form: {
         name: '',
         releaseYear: '',
@@ -267,7 +257,7 @@ class MovieCreateForm extends React.Component {
             <option>action</option>
           </select>
         </div>
-        <button onClick={this.handleCreateMovie} type="button" className="btn btn-primary">Save changes</button>
+        <button onClick={this.submitForm} type="button" className="btn btn-primary">Save changes</button>
       </form>
     )
   }

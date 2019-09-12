@@ -34,7 +34,7 @@ const Home = (props) => {
     })
   }
 
-  const addMovieToList = (movie) => {
+  const addMovieToList = () => {
     Router.push('/')
   }
 

@@ -11,23 +11,21 @@ class Edit extends React.Component {
   }
 
   state = {
-    movie: {},
-    isFetched: false
+    movie: {}
   }
 
   componentDidMount() {
     const { id } = this.props.query
     getMovieById(id).then((movie) => {
-      this.setState({movie, isFetched: true})
+      this.setState({movie})
     })
   }
 
   render() {
-    const { movie, isFetched } = this.state
+    const { movie } = this.state
     return (
       <div className="container">
         <h1>Edit the Movie</h1>
-        { /* isFetched && <MovieCreateForm initialData={movie} /> */ }
         <MovieCreateForm initialData={movie} />
       </div>
     )
